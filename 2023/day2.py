@@ -41,5 +41,5 @@ with open('day2-input.txt', 'r') as input:
             game.add_set(set)
         games.append(game)
 
-print(games)
+print(sum(game.number for game in games if game.possible()))
 print(sum(game.power() for game in games))
