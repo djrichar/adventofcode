@@ -5,32 +5,37 @@ import random
 import re
 import sys
 
-results = []
-numbers = [
-    "zero",
-    "one",
-    "two",
-    "three",
-    "four",
-    "five",
-    "six",
-    "seven",
-    "eight",
-    "nine"
-]
-forward = re.compile(r'(\d|%s)' % "|".join(numbers) )
-reverse = re.compile(r'(\d|%s)' % "|".join([ n[::-1] for n in numbers]) )
+numbers = {
+    "zero": "0o",
+    "one": "o1e",
+    "two": "t2o",
+    "three": "t3e",
+    "four": "4",
+    "five": "5e",
+    "six": "6",
+    "seven": "7n",
+    "eight": "e8t",
+    "nine": "n9e"
+}
+
+forward1 = re.compile(r'\d')
+reverse1 = re.compile(r'\d')
+
+def problem1(line):
+    d1 = forward1.search(line)
+    d2 = reverse1.search(line[::-1])
+    return int(d1.group(0) + d2.group(0)) if d1 and d2 else 0
+
+def problem2(line):
+    for key, value in numbers.items():
+        line = line.replace(key, value)
+    return problem1(line)
+
+result1=[]
+result2=[]
 with open('day1-input.txt', 'r') as input:
     for line in input.readlines():
-        d1 = forward.search(line)
-        d2 = reverse.search(line[::-1])
-        if d1 and d2:
-            i1 = d1.group(0)
-            if i1 in numbers:
-                i1 = str(numbers.index(i1))
-            i2 = d2.group(0)
-            if i2[::-1] in numbers:
-                i2 = str(numbers.index(i2[::-1]))
-            print(i1, i2, line)
-            results.append(int(i1 + i2))
-print(sum(results))
+        result1.append(problem1(line))
+        result2.append(problem2(line))
+print(sum(result1))
+print(sum(result2))
