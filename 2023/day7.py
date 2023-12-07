@@ -68,5 +68,4 @@ with open('day7-input.txt', 'r') as input:
 hands.sort()
 print("hands", sum([ v.bid * (index+1) for index, v in enumerate(hands)]))
 hands2.sort()
-print(hands2)
 print("hands2", sum([ v.bid * (index+1) for index, v in enumerate(hands2)]))
