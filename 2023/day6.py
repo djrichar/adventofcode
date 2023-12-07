@@ -86,21 +86,6 @@ def find_looser(dist, time, highside=False):
             next_high = mid + 1 if not highside else high
         ## catch infinite loop error
         if(next_low == low and next_high == high):
-            # looser = None
-            # if highside:
-            #     if low_dist < dist:
-            #         looser = low
-            #     elif mid_dist < dist:
-            #         looser = mid
-            #     else:
-            #         looser = high
-            # else:
-            #     if high_dist < dist:
-            #         looser = high
-            #     elif mid_dist < dist:
-            #         looser = mid
-            #     else:
-            #         looser = low
             print("ERROR found", looser, "for find(",low,mid,high,")", dist, low_dist, mid_dist, high_dist)
             return mid
         else:
